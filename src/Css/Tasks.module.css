@@ -1,0 +1,8 @@
+.TasksItem {
+  /* background-color: rebeccapurple; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
