@@ -29,7 +29,7 @@ const todoPayload = {
     description: "",
     assignedBy: "",
     assignedTo: "",
-    status: "",
+    status: ""
 };
 
 const SendToken = {
@@ -69,6 +69,11 @@ function AddTask({ sprintId }) {
         ) {
             alert("Please Fill All Details");
         } else {
+            const payload = {
+                sprintId,
+                form
+            }
+            // console.log(payload)
         }
     };
 

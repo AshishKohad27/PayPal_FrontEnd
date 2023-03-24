@@ -4,7 +4,7 @@ import { CREATE_SPRINT, DELETE_SPRINT, ERROR_MESSAGE_SPRINT_TASK, GET_SPRINT, LO
 export const getSprint = () => async (dispatch) => {
     try {
         dispatch({ type: LOADING_MESSAGE_SPRINT_TASK })
-        const res = await axios.get('http://localhost:7878/task/');
+        const res = await axios.get('http://localhost:7878/sprint/');
         dispatch({ type: GET_SPRINT, payload: res.data });
     } catch (e) {
         dispatch({ type: ERROR_MESSAGE_SPRINT_TASK, payload: e.response.data });
@@ -15,7 +15,7 @@ export const getSprint = () => async (dispatch) => {
 export const createSprint = (payload) => async (dispatch) => {
     try {
         dispatch({ type: LOADING_MESSAGE_SPRINT_TASK })
-        const res = await axios.post('http://localhost:7878/task/', payload);
+        const res = await axios.post('http://localhost:7878/sprint/', payload);
         dispatch({ type: CREATE_SPRINT, payload: res.data });
     } catch (e) {
         dispatch({ type: ERROR_MESSAGE_SPRINT_TASK, payload: e.response.data });
@@ -26,7 +26,7 @@ export const createSprint = (payload) => async (dispatch) => {
 export const deleteSprint = (payload) => async (dispatch) => {
     try {
         dispatch({ type: LOADING_MESSAGE_SPRINT_TASK })
-        const res = await axios.delete(`http://localhost:7878/task/${payload}`);
+        const res = await axios.delete(`http://localhost:7878/sprint/${payload}`);
         dispatch({ type: DELETE_SPRINT, payload: res.data });
     } catch (e) {
         dispatch({ type: ERROR_MESSAGE_SPRINT_TASK, payload: e.response.data });

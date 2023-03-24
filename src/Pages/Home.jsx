@@ -35,8 +35,7 @@ import style from "../Css/Home.module.css";
 const sprintPayload = {
     name: "",
     startDate: "",
-    endDate: "",
-    sprintTasks: [],
+    endDate: ""
 };
 
 const SendToken = {
