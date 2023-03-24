@@ -16,7 +16,7 @@ export const postSign = (payload) => async (dispatch) => {
     dispatch({ type: SIGNUP_LOADING });
     try {
         let res = await axios.post(
-            `http://localhost:7878/auth/signup`,
+            `https://chocolate-abalone-gear.cyclic.app/auth/signup`,
             payload
         );
         console.log("res:", res.data);
@@ -31,7 +31,7 @@ export const postLogin = (payload) => async (dispatch) => {
     dispatch({ type: LOGIN_LOADING });
     try {
         let res = await axios.post(
-            `http://localhost:7878/auth/login`,
+            `https://chocolate-abalone-gear.cyclic.app/auth/login`,
             payload
         );
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
@@ -45,7 +45,7 @@ export const postLogin = (payload) => async (dispatch) => {
 export const getDetailsFromToken = (payload) => async (dispatch) => {
     try {
         let res = await axios.post(
-            `http://localhost:7878/auth/verify`,
+            `https://chocolate-abalone-gear.cyclic.app/auth/verify`,
             payload
         );
         dispatch({ type: GET_DETAILS_FROM_TOKEN, payload: res.data });
@@ -59,7 +59,7 @@ export const getDetailsFromToken = (payload) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
     try {
         let res = await axios.get(
-            `http://localhost:7878/auth`
+            `https://chocolate-abalone-gear.cyclic.app/auth`
         );
         // console.log('res getAllUsers:', res)
         dispatch({ type: GET_ALL_USERS, payload: res.data });

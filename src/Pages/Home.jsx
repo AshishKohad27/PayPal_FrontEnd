@@ -26,7 +26,7 @@ import {
     createSprint,
     deleteSprint,
     getSprint,
-} from "../Redux/task/task.action";
+} from "../Redux/sprint/sprint.action";
 import { getDetailsFromToken } from "../Redux/user/user.action";
 import { LOGOUT } from "../Redux/user/user.type";
 import { MdDelete } from "react-icons/md";
@@ -50,7 +50,7 @@ export default function Home() {
     const { tokenDetails, isAuth, errorMessage } = useSelector(
         (store) => store.user
     );
-    const { sprintList, loading } = useSelector((store) => store.task);
+    const { sprintList, loading } = useSelector((store) => store.sprint);
     console.log('loading:', loading)
 
     useEffect(() => {

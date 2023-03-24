@@ -8,54 +8,44 @@ import {
     ModalCloseButton,
     Button,
     useDisclosure,
-    Input,
-    FormLabel,
-    FormControl,
     Stack,
     Box,
-    Select,
-    Text,
-    Flex,
+    FormControl,
+    FormLabel,
+    Input,
     Textarea,
-    SimpleGrid,
-} from "@chakra-ui/react";
-import axios from "axios";
+    Select,
+    Flex,
+} from '@chakra-ui/react'
+import { useEffect, useState } from 'react';
+import { GrEdit } from 'react-icons/gr'
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { updateTask } from '../../Redux/task/task.action';
+import { getAllUsers } from '../../Redux/user/user.action';
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { createTask, getTask } from "../../Redux/task/task.action";
-import { getAllUsers, getDetailsFromToken } from "../../Redux/user/user.action";
 
-const todoPayload = {
-    title: "",
-    description: "",
-    assignedBy: "",
-    assignedTo: "",
-    status: "",
-    sprintId: "",
-};
 
-const SendToken = {
-    token: "",
-};
-
-function AddTask() {
-
+export default function EditTask({ item }) {
     const { id } = useParams();
     let [sprintName, sprintId] = id.split("__$$__");
     console.log('sprintId from AddTask:', sprintId);
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [form, setForm] = useState({
+        title: item.title,
+        description: item.description,
+        assignedBy: item.assignedBy,
+        assignedTo: item.assignedTo,
+        status: item.status,
+        sprintId
+    })
     const dispatch = useDispatch();
     const { tokenDetails, allUsers } = useSelector((store) => store.user);
 
-    const [form, setForm] = useState(todoPayload);
-
     useEffect(() => {
         dispatch(getAllUsers());
-        SendToken.token = axios.defaults.headers.common["authorization_access"];
-        dispatch(getDetailsFromToken(SendToken));
     }, [dispatch]);
 
     const handleChange = (e) => {
@@ -67,9 +57,6 @@ function AddTask() {
     };
 
     const handleSubmit = () => {
-        setForm({ ...form, sprintId })
-        console.log('form:', form)
-
         if (
             !form.title ||
             !form.description ||
@@ -81,12 +68,12 @@ function AddTask() {
             alert("Please Fill All Details");
         } else {
             const payload = {
+                id: item._id,
                 sprintId,
                 form
             }
-            dispatch(createTask(payload))
-
-            setForm(todoPayload)
+            dispatch(updateTask(payload))
+            console.log("form EDIT:", form)
         }
     };
 
@@ -94,34 +81,12 @@ function AddTask() {
 
     return (
         <>
-            <SimpleGrid
-                columns={{ base: 1, sm: 1, md: 2 }}
-                maxW="1048px"
-                bg="green.200"
-                m="auto"
-                px="100px"
-                justifyContent="space-between"
-                alignItems="center"
-                borderRadius="10px"
-                mt="20px"
-            >
-                <Box>
-                    <Text fontSize="20px" fontWeight="500">
-                        Name: {tokenDetails.name}
-                    </Text>
-                    <Text>Email: {tokenDetails.email}</Text>
-                </Box>
-                <Box>
-                    <Button onClick={onOpen}>Add Task</Button>
-                </Box>
-            </SimpleGrid>
+            <Button onClick={onOpen}>  <GrEdit fontSize="18px" /></Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>
-                        Add Task by {tokenDetails && tokenDetails.name}
-                    </ModalHeader>
+                    <ModalHeader>{item.title}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <Stack spacing={1} mx={"auto"} maxW={"lg"} py={0} px={0}>
@@ -153,6 +118,7 @@ function AddTask() {
                                             placeholder="Select Status"
                                             name="status"
                                             onChange={handleChange}
+                                            value={form.status}
                                         >
                                             <option value="todo">Todo</option>
                                             <option value="progress">In Progress</option>
@@ -164,6 +130,7 @@ function AddTask() {
                                         <FormControl>
                                             <FormLabel>Assigned By</FormLabel>
                                             <Select
+                                                value={form.assignedBy}
                                                 placeholder="Assigned By"
                                                 name="assignedBy"
                                                 onChange={handleChange}
@@ -177,6 +144,7 @@ function AddTask() {
                                         <FormControl>
                                             <FormLabel>Assigned To</FormLabel>
                                             <Select
+                                                value={form.assignedTo}
                                                 placeholder="Assigned To"
                                                 name="assignedTo"
                                                 onChange={handleChange}
@@ -201,7 +169,7 @@ function AddTask() {
                                 handleSubmit();
                             }}
                         >
-                            Add Task
+                            Edit Task
                         </Button>
                         <Button
                             colorScheme="blue"
@@ -216,7 +184,5 @@ function AddTask() {
                 </ModalContent>
             </Modal>
         </>
-    );
+    )
 }
-
-export default AddTask;

@@ -3,29 +3,30 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp";
 import Tasks from "../Pages/Tasks";
+import UserTask from "../Pages/UserTask";
 import PrivateRoute from "./PrivateRoute";
 
 
 export default function AllRoutes() {
     return (
         <Routes>
-            {/* <Route
-                path="/about"
-                element={
-                    <PrivateRoute>
-                        <About />
-                    </PrivateRoute>
-                }
-            /> */}
             <Route
-                path="/task"
+                path="/"
                 element={
                     <PrivateRoute>
-                        <Tasks />
+                        <Home />
                     </PrivateRoute>
                 }
             />
-            <Route path="/" element={<Home />} />
+            <Route
+                path="/usertask"
+                element={
+                    <PrivateRoute>
+                        <UserTask />
+                    </PrivateRoute>
+                }
+            />
+        
 
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />

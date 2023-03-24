@@ -1,7 +1,9 @@
-export const GET_SPRINT = "get/sprint/success";
-export const CREATE_SPRINT = "create/sprint/success";
-export const DELETE_SPRINT = "delete/sprint/success";
+export const GET_TASK = "get/task/success";
+export const CREATE_TASK = "create/task/success";
+export const DELETE_TASK = "delete/task/success";
+export const UPDATE_TASK = "update/task/success";
 
-export const ERROR_MESSAGE_SPRINT_TASK = "message/sprint/error";
+export const USER_INDIVIDUAL_TASK = "user/individual/task/success";
+export const ERROR_MESSAGE_TASK = "message/sprint/error";
 
-export const LOADING_MESSAGE_SPRINT_TASK = "message/sprint/loading";
+export const LOADING_MESSAGE_TASK = "message/sprint/loading";
