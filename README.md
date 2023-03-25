@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# _PocoCare_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Links
+<br/>
+Frontend:- https://pay-pal-front-end.vercel.app/login
+<br/>
+Backend :- https://chocolate-abalone-gear.cyclic.app/
 
-## Available Scripts
+## Build with
 
-In the project directory, you can run:
+<table  align=center>
+  <tr>
+ <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1280px-Node.js_logo.svg.png"  height=100   width=150 ></td>
+     <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" height=100   ></td>
+    <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png"  height=100   width=150 ></td>
+     <td align=center> <img src="https://img.icons8.com/nolan/64/wikipedia.png"  height=100  ></td>
+  </tr><tr><td align=center>  <img src="https://img.icons8.com/color/48/null/chakra-ui.png"   width=100  ></td>
 
-### `npm start`
+  <td align=center> <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"  height=100  ></td>
+  <td align=center> <img src="https://img.icons8.com/plasticine/100/null/github.png"  height=100  ></td>
+  </tr>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</table>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<hr/>
 
-### `npm test`
+## Functionalities
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 🧑🏻 **Ashish Kohad**
 
-### `npm run build`
+- Github:[@Ashish Kohad](https://github.com/AshishKohad27)
+- Linkedin: [Ashish Kohad](https://www.linkedin.com/in/ashish-kohad27/)
+- Email: (kohadashish27@gmial.com)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h1><i>Tech Stacks used </i></h1>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>Javascript</li>
+<li>React</li>
+<li>Redux</li>
+<li>NodeJs</li>
+<li>MongoDB</li>
+<li>Express</li>
+</ul>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h3><i>External libraries used </i></h3>
 
-### `npm run eject`
+<ul>
+<li>Chakra UI</li>
+<li>Axios</li>
+<li>Redux-Thunk</li>
+<li>Redux</li>
+</ul>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br/>
+<h2 align="center" >✨ FUNCTIONALITIES (multi-user)✨<h2/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Form validation
+<br/>
+## Login Page
+![Alt text](images/Login.PNG)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Sign Up Page
 
-## Learn More
+![Alt text](Img/Signup_PocoCare.PNG)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Landing page and Private Page
 
-### Code Splitting
+![Alt text](Img/Private_Page.PNG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br/>
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="https://raw.githubusercontent.com/Trilokia/Trilokia/379277808c61ef204768a61bbc5d25bc7798ccf1/bottom_header.svg" />
