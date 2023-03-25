@@ -1,4 +1,4 @@
-import {  Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ export default function UserTask() {
         (store) => store.user
     );
 
-    const { individual } = useSelector((store) => store.task);
+    const { individual, loading } = useSelector((store) => store.task);
     console.log('individual:', individual)
 
     useEffect(() => {
@@ -36,7 +36,15 @@ export default function UserTask() {
     return (
         <>
             <Heading maxW="1348px" m="auto" mt="10px" bg="green.300" borderRadius="10px">All Task Assigned to {tokenDetails && tokenDetails.name}</Heading>
-            <SimpleGrid maxW="900px" m="auto" mt="50px" columns={2} spacing={10}>
+            {loading ? <Box bg="" mt={{ base: "50px", md: "100px" }}>
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+            </Box> : <SimpleGrid maxW="900px" m="auto" mt="50px" columns={2} spacing={10}>
                 {individual &&
                     individual.map((item, index) => (
                         <Stack
@@ -58,10 +66,12 @@ export default function UserTask() {
                             <Text as="p" fontSize="16px" >Desc: {item.description}</Text>
                             <Text as="p" fontSize="16px" >AssignedBy: {item.assignedBy}</Text>
                             <Text as="p" fontSize="16px">AssignedTo: {item.assignedTo}</Text>
-
+                            <Text>Sprint: {item.sprintName}</Text>
 
                         </Stack>
                     ))}
-            </SimpleGrid></>
+            </SimpleGrid>
+            }
+        </>
     )
 }

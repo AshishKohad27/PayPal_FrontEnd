@@ -4,6 +4,7 @@ import {
     Flex,
     Heading,
     SimpleGrid,
+    Spinner,
     Stack,
     Text,
 } from "@chakra-ui/react";
@@ -21,7 +22,8 @@ function Tasks() {
     const dispatch = useDispatch();
     const { id } = useParams();
     let [sprintName, sprintId] = id.split("__$$__");
-    const { todo, progress, done } = useSelector((store) => store.task);
+    const { todo, progress, done, loading } = useSelector((store) => store.task);
+    console.log("loading in task:", loading);
 
     useEffect(() => {
         dispatch(getTask(sprintId));
@@ -29,8 +31,8 @@ function Tasks() {
 
     const handleDelete = (item) => {
         // console.log('item:', item)
-        dispatch(deleteTask({ id: item._id, sprintId }))
-    }
+        dispatch(deleteTask({ id: item._id, sprintId }));
+    };
 
     return (
         <Box mb="50px">
@@ -41,7 +43,6 @@ function Tasks() {
                 bg="yellow.200"
                 p="10px"
                 borderRadius="10px"
-
             >
                 <Heading>Sprint Name: {sprintName}</Heading>
             </Flex>
@@ -57,7 +58,10 @@ function Tasks() {
                 spacing="20px"
             >
                 {/* Todo */}
-                <Box borderRadius="10px" height="auto" bg="green.100"
+                <Box
+                    borderRadius="10px"
+                    height="auto"
+                    bg="green.100"
                     borderBottom="5px solid green"
                 >
                     <Flex className={style.TasksItem} mt="10px">
@@ -65,64 +69,70 @@ function Tasks() {
                         <FaCircle color="green" />
                         <Heading>Todo </Heading>
                     </Flex>
-                    <Box m="15px">
-                        {todo &&
-                            todo.map((item, index) => (
-                                <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    key={index}
-                                    borderRadius="10px"
-                                    mt="10px"
-                                    bg="green.400"
-                                    p="10px"
-                                    borderBottom="5px solid green"
-                                    boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                                >
-                                    <Box >
-                                        <Box textAlign="left">
-                                            <Text
-                                                fontWeight="600"
-                                                fontFamily="sans-serif"
-                                                fontSize="23px"
+                    {loading ? (
+                        <Spinner />
+                    ) : (
+                        <Box m="15px">
+                            {todo &&
+                                todo.map((item, index) => (
+                                    <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        key={index}
+                                        borderRadius="10px"
+                                        mt="10px"
+                                        bg="green.400"
+                                        p="10px"
+                                        borderBottom="5px solid green"
+                                        boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                                    >
+                                        <Box>
+                                            <Box textAlign="left">
+                                                <Text
+                                                    fontWeight="600"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="23px"
+                                                >
+                                                    Title: {item.title}
+                                                </Text>
+                                                <Text
+                                                    fontWeight="500"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="18px"
+                                                >
+                                                    Description: {item.description}
+                                                </Text>
+                                                <Text>AssignedBy: {item.assignedBy}</Text>
+                                                <Text>AssignedTo: {item.assignedTo}</Text>
+                                            </Box>
+                                        </Box>
+                                        <Box>
+                                            <Stack
+                                                gap="10px"
+                                                m="auto"
+                                                mt="10px"
+                                                justifyContent="center"
+                                                alignItems="center"
                                             >
-                                                Title: {item.title}
-                                            </Text>
-                                            <Text
-                                                fontWeight="500"
-                                                fontFamily="sans-serif"
-                                                fontSize="18px"
-                                            >
-                                                Description: {item.description}
-                                            </Text>
-                                            <Text>AssignedBy: {item.assignedBy}</Text>
-                                            <Text>AssignedTo: {item.assignedTo}</Text>
+                                                <Button onClick={() => handleDelete(item)}>
+                                                    <MdDelete fontSize="18px" />
+                                                </Button>
+                                                <EditTask item={item} />
+                                            </Stack>
                                         </Box>
                                     </Box>
-                                    <Box >
-                                        <Stack
-                                            gap="10px"
-                                            m="auto"
-                                            mt="10px"
-                                            justifyContent="center"
-                                            alignItems="center"
-                                        >
-                                            <Button onClick={() => handleDelete(item)}>
-                                                <MdDelete fontSize="18px" />
-                                            </Button>
-                                            <EditTask item={item} />
-                                        </Stack>
-                                    </Box>
-
-                                </Box>
-                            ))}
-                    </Box>
+                                ))}
+                        </Box>
+                    )}
                 </Box>
                 {/* Todo */}
 
                 {/* Progress */}
-                <Box borderRadius="10px" height="auto" bg="yellow.100"
+                <Box
+                    borderRadius="10px"
+                    height="auto"
+                    bg="yellow.100"
                     borderBottom="5px solid yellow"
                 >
                     <Flex className={style.TasksItem} mt="10px">
@@ -130,125 +140,134 @@ function Tasks() {
                         <FaCircle color="yellow" />
                         <Heading>In Progress </Heading>
                     </Flex>
-                    <Box m="15px">
-                        {progress &&
-                            progress.map((item, index) => (
-                                <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    key={index}
-                                    borderRadius="10px"
-                                    mt="10px"
-                                    bg="yellow.400"
-                                    p="10px"
-                                    borderBottom="5px solid yellow"
-                                    boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                                >
-                                    <Box >
-                                        <Box textAlign="left">
-                                            <Text
-                                                fontWeight="600"
-                                                fontFamily="sans-serif"
-                                                fontSize="23px"
+                    {loading ? (
+                        <Spinner />
+                    ) : (
+                        <Box m="15px">
+                            {progress &&
+                                progress.map((item, index) => (
+                                    <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        key={index}
+                                        borderRadius="10px"
+                                        mt="10px"
+                                        bg="yellow.400"
+                                        p="10px"
+                                        borderBottom="5px solid yellow"
+                                        boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                                    >
+                                        <Box>
+                                            <Box textAlign="left">
+                                                <Text
+                                                    fontWeight="600"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="23px"
+                                                >
+                                                    Title: {item.title}
+                                                </Text>
+                                                <Text
+                                                    fontWeight="500"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="18px"
+                                                >
+                                                    Description: {item.description}
+                                                </Text>
+                                                <Text>AssignedBy: {item.assignedBy}</Text>
+                                                <Text>AssignedTo: {item.assignedTo}</Text>
+                                            </Box>
+                                        </Box>
+                                        <Box>
+                                            <Stack
+                                                gap="10px"
+                                                m="auto"
+                                                mt="10px"
+                                                justifyContent="center"
+                                                alignItems="center"
                                             >
-                                                Title: {item.title}
-                                            </Text>
-                                            <Text
-                                                fontWeight="500"
-                                                fontFamily="sans-serif"
-                                                fontSize="18px"
-                                            >
-                                                Description: {item.description}
-                                            </Text>
-                                            <Text>AssignedBy: {item.assignedBy}</Text>
-                                            <Text>AssignedTo: {item.assignedTo}</Text>
+                                                <Button onClick={() => handleDelete(item)}>
+                                                    <MdDelete fontSize="18px" />
+                                                </Button>
+
+                                                <EditTask item={item} />
+                                            </Stack>
                                         </Box>
                                     </Box>
-                                    <Box >
-                                        <Stack
-                                            gap="10px"
-                                            m="auto"
-                                            mt="10px"
-                                            justifyContent="center"
-                                            alignItems="center"
-                                        >
-                                            <Button onClick={() => handleDelete(item)}>
-                                                <MdDelete fontSize="18px" />
-                                            </Button>
-
-                                            <EditTask item={item} />
-                                        </Stack>
-                                    </Box>
-
-                                </Box>
-                            ))}
-                    </Box>
+                                ))}
+                        </Box>
+                    )}
                 </Box>
                 {/* Progress */}
 
                 {/* Done */}
-                <Box borderRadius="10px" height="auto" bg="purple.100"
+                <Box
+                    borderRadius="10px"
+                    height="auto"
+                    bg="purple.100"
                     borderBottom="5px solid purple"
                 >
                     <Flex className={style.TasksItem} mt="10px">
                         <FaCircle color="purple" />
                         <Heading>Done </Heading>
                     </Flex>
-                    <Box m="15px">
-                        {done &&
-                            done.map((item, index) => (
-                                <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    key={index}
-                                    borderRadius="10px"
-                                    mt="10px"
-                                    bg="purple.400"
-                                    p="10px"
-                                    borderBottom="5px solid purple"
-                                    boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                                >
-                                    <Box >
-                                        <Box textAlign="left">
-                                            <Text
-                                                fontWeight="600"
-                                                fontFamily="sans-serif"
-                                                fontSize="23px"
+                    {loading ? (
+                        <Spinner />
+                    ) : (
+                        <Box m="15px">
+                            {done &&
+                                done.map((item, index) => (
+                                    <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        key={index}
+                                        borderRadius="10px"
+                                        mt="10px"
+                                        bg="purple.400"
+                                        p="10px"
+                                        borderBottom="5px solid purple"
+                                        boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                                    >
+                                        <Box>
+                                            <Box textAlign="left">
+                                                <Text
+                                                    fontWeight="600"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="23px"
+                                                >
+                                                    Title: {item.title}
+                                                </Text>
+                                                <Text
+                                                    fontWeight="500"
+                                                    fontFamily="sans-serif"
+                                                    fontSize="18px"
+                                                >
+                                                    Description: {item.description}
+                                                </Text>
+                                                <Text>AssignedBy: {item.assignedBy}</Text>
+                                                <Text>AssignedTo: {item.assignedTo}</Text>
+                                            </Box>
+                                        </Box>
+                                        <Box>
+                                            <Stack
+                                                gap="10px"
+                                                m="auto"
+                                                mt="10px"
+                                                justifyContent="center"
+                                                alignItems="center"
                                             >
-                                                Title: {item.title}
-                                            </Text>
-                                            <Text
-                                                fontWeight="500"
-                                                fontFamily="sans-serif"
-                                                fontSize="18px"
-                                            >
-                                                Description: {item.description}
-                                            </Text>
-                                            <Text>AssignedBy: {item.assignedBy}</Text>
-                                            <Text>AssignedTo: {item.assignedTo}</Text>
+                                                <Button onClick={() => handleDelete(item)}>
+                                                    <MdDelete fontSize="18px" />
+                                                </Button>
+
+                                                <EditTask item={item} />
+                                            </Stack>
                                         </Box>
                                     </Box>
-                                    <Box >
-                                        <Stack
-                                            gap="10px"
-                                            m="auto"
-                                            mt="10px"
-                                            justifyContent="center"
-                                            alignItems="center"
-                                        >
-                                            <Button onClick={() => handleDelete(item)}>
-                                                <MdDelete fontSize="18px" />
-                                            </Button>
-
-                                            <EditTask item={item} />
-                                        </Stack>
-                                    </Box>
-
-                                </Box>
-                            ))}
-                    </Box>
+                                ))}
+                        </Box>
+                    )}
                 </Box>
                 {/* Done */}
             </SimpleGrid>

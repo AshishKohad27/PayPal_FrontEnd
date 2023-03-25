@@ -6,7 +6,8 @@ import {
     Input,
     Stack,
     Button,
-    Heading
+    Heading,
+    Spinner
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +23,7 @@ export default function Login() {
     const [form, setForm] = useState(initialState);
     const dispatch = useDispatch();
     const { loading, error, isAuth, message } = useSelector((store) => store.user);
+    console.log('loading Login:', loading)
     // console.log('message:', message)
     // console.log('isAuth:', isAuth);
 
@@ -97,7 +99,7 @@ export default function Login() {
                                     }}
                                     onClick={handleSubmit}
                                 >
-                                    Login
+                                    {loading ? <Spinner /> : "Login"}
                                 </Button>
 
                             </Stack>

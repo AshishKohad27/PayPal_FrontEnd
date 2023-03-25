@@ -25,7 +25,9 @@ export const taskReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 todo: payload.data.todo,
                 progress: payload.data.progress,
-                done: payload.data.done
+                done: payload.data.done,
+                loading: false,
+                error: false
             };
         }
         case CREATE_TASK: {
@@ -33,7 +35,9 @@ export const taskReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 todo: payload.data.todo,
                 progress: payload.data.progress,
-                done: payload.data.done
+                done: payload.data.done,
+                loading: false,
+                error: false
             };
 
         }
@@ -43,7 +47,9 @@ export const taskReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 todo: payload.data.todo,
                 progress: payload.data.progress,
-                done: payload.data.done
+                done: payload.data.done,
+                loading: false,
+                error: false
             };
         }
 
@@ -52,7 +58,9 @@ export const taskReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 todo: payload.data.todo,
                 progress: payload.data.progress,
-                done: payload.data.done
+                done: payload.data.done,
+                loading: false,
+                error: false
             };
         }
 
@@ -76,7 +84,9 @@ export const taskReducer = (state = initialState, { type, payload }) => {
         case USER_INDIVIDUAL_TASK: {
             return {
                 ...state,
-                individual: payload.data
+                individual: payload.data,
+                loading: false,
+                error: false,
             };
         }
 

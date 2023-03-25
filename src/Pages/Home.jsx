@@ -35,7 +35,7 @@ import style from "../Css/Home.module.css";
 const sprintPayload = {
     name: "",
     startDate: "",
-    endDate: ""
+    endDate: "",
 };
 
 const SendToken = {
@@ -51,7 +51,7 @@ export default function Home() {
         (store) => store.user
     );
     const { sprintList, loading } = useSelector((store) => store.sprint);
-    console.log('loading:', loading)
+    console.log("loading:", loading);
 
     useEffect(() => {
         SendToken.token = axios.defaults.headers.common["authorization_access"];
@@ -161,8 +161,18 @@ export default function Home() {
                 </ModalContent>
             </Modal>
 
-            {
-                loading ? <Spinner /> : <SimpleGrid maxW="900px" m="auto" mt="50px" columns={2} spacing={10}>
+            {loading ? (
+                <Box bg="" mt={{ base: "50px", md: "100px" }}>
+                    <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                    />
+                </Box>
+            ) : (
+                <SimpleGrid maxW="900px" m="auto" mt="50px" columns={2} spacing={10}>
                     {sprintList &&
                         sprintList.map((item, index) => (
                             <Flex
@@ -179,8 +189,12 @@ export default function Home() {
                                         {" "}
                                         {item.name}
                                     </Heading>
-                                    <Text as="p" fontSize="16px" >Start: {item.startDate}</Text>
-                                    <Text as="p" fontSize="16px">End: {item.endDate}</Text>
+                                    <Text as="p" fontSize="16px">
+                                        Start: {item.startDate}
+                                    </Text>
+                                    <Text as="p" fontSize="16px">
+                                        End: {item.endDate}
+                                    </Text>
                                 </Link>
                                 <Box>
                                     <Button
@@ -196,8 +210,7 @@ export default function Home() {
                             </Flex>
                         ))}
                 </SimpleGrid>
-            }
-
+            )}
         </Box>
     );
 }

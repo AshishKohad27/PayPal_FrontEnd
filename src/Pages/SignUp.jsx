@@ -7,6 +7,7 @@ import {
     Stack,
     Button,
     Heading,
+    Spinner,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +23,7 @@ const initialState = {
 export default function SignUp() {
     const [form, setForm] = useState(initialState);
     const dispatch = useDispatch();
-    const { message } = useSelector((store) => store.user);
+    const { message, loading } = useSelector((store) => store.user);
 
     useEffect(() => {
         if (message === "User With this Email Already Exists") {
@@ -102,7 +103,7 @@ export default function SignUp() {
                                     }}
                                     onClick={handleSubmit}
                                 >
-                                    Sign up
+                                    {loading ? <Spinner /> : "Sign up"}
                                 </Button>
                             </Stack>
                         </Stack>

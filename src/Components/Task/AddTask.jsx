@@ -34,6 +34,7 @@ const todoPayload = {
     assignedTo: "",
     status: "",
     sprintId: "",
+    sprintName: ""
 };
 
 const SendToken = {
@@ -67,7 +68,7 @@ function AddTask() {
     };
 
     const handleSubmit = () => {
-        setForm({ ...form, sprintId })
+        setForm({ ...form, sprintId, sprintName })
         console.log('form:', form)
 
         if (
@@ -76,7 +77,8 @@ function AddTask() {
             !form.assignedBy ||
             !form.assignedTo ||
             !form.status ||
-            !form.sprintId
+            !form.sprintId ||
+            !form.sprintName
         ) {
             alert("Please Fill All Details");
         } else {
