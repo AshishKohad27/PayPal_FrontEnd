@@ -45,9 +45,11 @@ export default function SignUp() {
         e.preventDefault();
         if (!form.email || !form.password) {
             alert("Please Fill All Details");
+        } else {
+
+            dispatch(postSign(form));
         }
         // console.log("email:", form.email, "password:", form.password)
-        dispatch(postSign(form));
     };
 
     const { email, password, name } = form;
